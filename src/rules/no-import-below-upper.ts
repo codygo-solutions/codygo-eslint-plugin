@@ -10,7 +10,7 @@ export const rule = createRule({
       recommended: 'error',
     },
     messages: {
-      error: 'Import of lower-case after upper case in "{{source}}"',
+      error: 'Import of lower-case after upper case in "{{source}}": "{{upperCased}}"',
     },
     type: 'problem',
     schema: [],
@@ -19,17 +19,13 @@ export const rule = createRule({
   create(context) {
     return {
       ImportDeclaration(node: TSESTree.ImportDeclaration) {
-        const parts = node.source.value.split('/').filter((p) => p !== '.' && p !== '..');
-        const upper = parts.findIndex((p) => p[0].toUpperCase() === p[0]);
-        if (upper === -1) {
-          return;
-        }
-        const found = parts.find((p, j) => j > upper && p[0].toLowerCase() === p[0]);
-        if (found) {
+        const results = /^(.*\/)?([A-Z][^/]*)\//gm.exec(node.source.value);
+        if (results) {
           context.report({
             messageId: 'error',
             node,
             data: {
+              upperCased: results[2] as string,
               source: node.source.value,
             },
           });
