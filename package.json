@@ -11,7 +11,7 @@
     "lint": "eslint src",
     "lint:fix": "pnpm lint --fix",
     "prepublish": "pnpm lint && pnpm build",
-    "release": "semantic-release"
+    "release": "pnpm build && pnpm version patch && git push --tags && semantic-release"
   },
   "keywords": [
     "eslint",
