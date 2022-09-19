@@ -10,7 +10,7 @@ export const rule = createRule({
       recommended: 'error',
     },
     messages: {
-      error: 'Do not import bellow an upper-case-first directory or file',
+      error: 'Import of lower-case after upper case in "{{source}}"',
     },
     type: 'problem',
     schema: [],
@@ -20,12 +20,18 @@ export const rule = createRule({
     return {
       ImportDeclaration(node: TSESTree.ImportDeclaration) {
         const parts = node.source.value.split('/').filter((p) => p !== '.' && p !== '..');
-        const upper = parts.findIndex((p) => p.toUpperCase() === p);
-        const lower = parts.findIndex((p) => p.toLowerCase() === p);
-        if (lower > upper) {
+        const upper = parts.findIndex((p) => p[0].toUpperCase() === p[0]);
+        if (upper === -1) {
+          return;
+        }
+        const found = parts.find((p, j) => j > upper && p[0].toLowerCase() === p[0]);
+        if (found) {
           context.report({
             messageId: 'error',
             node,
+            data: {
+              source: node.source.value,
+            },
           });
         }
       },
