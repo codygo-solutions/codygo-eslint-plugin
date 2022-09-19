@@ -1,6 +1,6 @@
 {
-  "name": "@codygo/eslint-plugin-practices",
-  "version": "1.0.2",
+  "name": "@codygo-eslint/eslint-plugin",
+  "version": "1.0.0",
   "description": "Useful code practices eslint plugin from codygo",
   "main": "dist/index.js",
   "scripts": {
