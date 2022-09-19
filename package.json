@@ -1,6 +1,6 @@
 {
   "name": "@codygo/eslint-plugin-practices",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Useful code practices eslint plugin from codygo",
   "main": "dist/index.js",
   "scripts": {
@@ -10,11 +10,6 @@
     "lint:fix": "pnpm lint --fix",
     "prepublish": "pnpm lint && pnpm build"
   },
-  "files": [
-    "README.md",
-    "package.json",
-    "dist"
-  ],
   "keywords": [
     "eslint",
     "eslint-plugin",
