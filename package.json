@@ -1,6 +1,6 @@
 {
   "name": "@codygo-eslint/eslint-plugin",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Useful code practices eslint plugin from codygo",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "lint": "eslint src",
     "lint:fix": "pnpm lint --fix",
     "prepublish": "pnpm lint && pnpm build",
-    "release": "pnpm build && pnpm version patch && git push --tags && semantic-release"
+    "release": "pnpm build && pnpm version patch && git push --tags && pnpm publish"
   },
   "keywords": [
     "eslint",
